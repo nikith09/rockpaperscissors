@@ -15,7 +15,34 @@
             return myArray[Math.floor(Math.random() * myArray.length)];
         }
         
+        function playRound(playerSelection, computerSelection) {
+        
+        if (playerSelection == "Rock" && computerSelection == "Rock") {
+            return "both chose rock, its a tie"
+        } else if (playerSelection == "Rock" && computerSelection == "Paper") {
+            return "you lose,rock loses to paper"
+        } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
+            return "you win, rock beats scissors."
+        } else if (playerSelection == "Paper" && computerSelection == "Paper") {
+            return "tie,paper ties to paper"
+        } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
+            return "you lose, paper loses to scissors."
+        } else if (playerSelection == "Paper" && computerSelection == "Rock") {
+            return "you win, paper beats rock"
+        } else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
+            return "you tie, scissors ties scissors."
+        } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
+            return "you win,scissors cuts paper"
+        } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
+            return "you lose, rock beats scissors."
+        }
+    }
+        
+        const playerSelection = "Rock";
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
 
+        
     </script>
 </body>
 </html>
