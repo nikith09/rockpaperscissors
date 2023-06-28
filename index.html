@@ -9,76 +9,67 @@
 <body>
     <script>
         
-        const myArray = ["rock", "paper", "scissors"];
-        
-        function getComputerChoice(computerSelection) {
-            return myArray[Math.floor(Math.random() * myArray.length)];
-        }
-        
-        function playRound(playerSelection, computerSelection) {
-        
-        if (playerSelection == "rock" && computerSelection == "rock") {
-            return "both chose rock, its a tie"
-        } else if (playerSelection == "rock" && computerSelection == "paper") {
-            computerScore++
-            return "you lose,rock loses to paper"
-        } else if (playerSelection == "rock" && computerSelection == "scissors") {
-            playerScore++
-            return "you win, rock beats scissors."
-        } else if (playerSelection == "paper" && computerSelection == "paper") {
-            return "tie,paper ties to paper"
-        } else if (playerSelection == "paper" && computerSelection == "scissors") {
-            computerScore++
-            return "you lose, paper loses to scissors."
-        } else if (playerSelection == "paper" && computerSelection == "rock") {
-            playerScore++
-            return "you win, paper beats rock"
-        } else if (playerSelection == "scissors" && computerSelection == "scissors") {
-            return "you tie, scissors ties scissors."
-        } else if (playerSelection == "scissors" && computerSelection == "paper") {
-            playerScore++
-            return "you win,scissors cuts paper"
-        } else if (playerSelection == "scissors" && computerSelection == "rock") {
-            computerScore++
-            return "you lose, rock beats scissors."
-        }
+        const myArray = ["rock", "paper", "scissors"]  
+
+    function getComputerChoice() {
+       return myArray[Math.floor(Math.random() * myArray.length)];
     }
 
-            let computerScore = 0;
-            let playerScore = 0;
+    function playRound(playerSelection, computerSelection) {
         
+      if (playerSelection == computerSelection) {
+        return "Its a tie, you both chose the same move."
+      }
+      else if (playerSelection == "rock" && computerSelection == "paper") {
+        computerScore++
+        return "you lose, as paper beats rock"
+      }
+      else if (playerSelection == "rock" && computerSelection == "scissors") {
+        playerScore++
+        return "you win, rock beats scissors"
+      } 
+      else if (playerSelection == "paper" && computerSelection == "rock") {
+        playerScore++
+        return "you win, as paper beats rock"
+      }
+      else if (playerSelection == "paper" && computerSelection == "scissors") {
+        computerScore++
+        return "you lose, as scissors beats paper." 
+      }
+      else if (playerSelection == "scissors" && computerSelection == "rock") {
+        computerScore++
+        return "you lose, as rock beats scissors"
+      }
+      else if (playerSelection == "scissors" && computerSelection == "paper") {
+        playerScore++
+        return "you win, as scissors cuts paper." 
+      }
+    }
 
-        function game() {
 
-            const playerSelection = prompt("whats your move");
-            
-            const computerSelection = getComputerChoice();
-            
-            console.log(playRound(playerSelection, computerSelection));
+    let playerScore = 0;
+    let computerScore = 0;
+         
+            function game() {
+            for (i = 0; i < 5; i++) { 
+              let playerSelection = prompt("whats your move?");
+              let computerSelection = getComputerChoice();
+              console.log(playRound(playerSelection, computerSelection));
+              console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`);
+              console.log("----------------------");
+          }
 
-            if (playerScore > computerScore) {
-                console.log("You beat the computer")
-            } else if (playerScore < computerScore) {
-                console.log("You lost to the computer")
-            } else (playerScore == computerScore) 
-                console.log("You tied.")
+          if (playerScore > computerScore) {
+                console.log("You WIN, you beat the COMPUTER!!!")
+              }
+              else if (playerScore < computerScore) {
+                console.log("You LOSE, the COMPUTER beat you!!!")
+              }
+              else if (playerScore == computerScore) {
+                console.log("You BOTH tie !!!")
+              }
         }
-
-
-        console.log(game());
-        console.log(`Players Score: ${playerScore}`, `Computers Score: ${computerScore}`);
-        
-        console.log(game());
-        console.log(`Players Score: ${playerScore}`, `Computers Score: ${computerScore}`);
-
-        console.log(game());
-        console.log(`Players Score: ${playerScore}`, `Computers Score: ${computerScore}`);
-
-        console.log(game());
-        console.log(`Players Score: ${playerScore}`, `Computers Score: ${computerScore}`);
-
-        console.log(game());
-        console.log(`Players Score: ${playerScore}`, `Computers Score: ${computerScore}`);
+       game();
         
     </script>
 </body>
