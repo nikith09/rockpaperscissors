@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<button id="rock">rock</button>
-<button id="paper">paper</button>
-<button id="scissors">scissors</button>
+    <h1>ROCK PAPER SCISSORS GAME</h1>
 
-<div class="result"></div>
+    <div class="buttons">
+        <button class="btn" id="rock">rock</button>
+        <button class="btn" id="paper">paper</button>
+        <button class="btn" id="scissors">scissors</button>
+    </div>
 
-    <script src="./index.js">
-        
-    </script>
+    <div class="result">
+        <h2 class="round"></h2>
+        <p class="score"></p>
+        <p class="move"></p>
+        <p class="gameResult"></p>
+    </div>
+
+    <div class="restartDiv">
+        <button class="restart">Restart</button>
+    </div>
+   
+
+
+    <script src="./index.js"></script>
 </body>
 </html>
