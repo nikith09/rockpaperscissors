@@ -34,15 +34,17 @@ function playRound(humanChoice) {
     }
 
     roundP.textContent = "Round: " + round;
-    score.textContent = `Score - Player: ${humanScore}, Computer: ${computerScore}`;
+    score.textContent = `| Player:  ${humanScore} | -------------------------------- | Computer:  ${computerScore} |`;
 
     if (humanScore == 5 || computerScore == 5) {
         if (humanScore == 5) {
             gameResult.textContent = 'You win, you beat the computer!!!'
+            gameResult.style.color = 'green';
             disableButton()
         }
         else {
             gameResult.textContent = 'You lose, the computer beat you!!!'
+            gameResult.style.color = 'red';
             disableButton()
         }
         disableButton()
@@ -77,7 +79,7 @@ restart.addEventListener("click", () => {
     humanScore = 0;
     computerScore = 0;
     roundP.textContent = "Round: " + round;
-    score.textContent = `Score - Player: ${humanScore}, Computer: ${computerScore}`;
+    score.textContent = `Score - Player: ${humanScore} Computer: ${computerScore}`
     move.textContent = "";
     gameResult.textContent = "";
 })
