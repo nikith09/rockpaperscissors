@@ -39,10 +39,13 @@ function playRound(humanChoice) {
     if (humanScore == 5 || computerScore == 5) {
         if (humanScore == 5) {
             gameResult.textContent = 'You win, you beat the computer!!!'
+            disableButton()
         }
         else {
             gameResult.textContent = 'You lose, the computer beat you!!!'
+            disableButton()
         }
+        disableButton()
     }
     
 }
@@ -55,8 +58,28 @@ rock.addEventListener("click", () => playRound('rock'));
 paper.addEventListener("click", () => playRound('paper'));
 scissors.addEventListener("click", () => playRound('scissors'))
 
-function disableButton
+function disableButton() {
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+}
 
+function enableButton() {
+    document.getElementById("rock").disabled = false;
+    document.getElementById("paper").disabled = false;
+    document.getElementById("scissors").disabled = false;
+}
 
+let restart = document.querySelector(".restart");
+restart.addEventListener("click", () => {
+    enableButton()
+    round = 0;
+    humanScore = 0;
+    computerScore = 0;
+    roundP.textContent = "Round: " + round;
+    score.textContent = `Score - Player: ${humanScore}, Computer: ${computerScore}`;
+    move.textContent = "";
+    gameResult.textContent = "";
+})
 
 
