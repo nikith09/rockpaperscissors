@@ -8,21 +8,17 @@ let getComputerChoice = () => {
     return moves[Math.floor(Math.random() * moves.length)];
 }
 
-let resultDiv = document.querySelector(".result");
-let para = document.createElement("p");
-let score = document.createElement("span");
-let rounds = document.createElement("p");
+let roundP = document.querySelector(".round");
+let score = document.querySelector(".score");
+let move = document.querySelector(".move");
+let gameResult = document.querySelector(".gameResult");
 
 function playRound(humanChoice) {
     let computerChoice = getComputerChoice();
     round++;
 
-    console.log(`Computer chose: ${computerChoice}`);
-    console.log(`You chose: ${humanChoice}`);
-
     if (computerChoice === humanChoice) {
-        para.textContent = "Its a draw!";
-        resultDiv.appendChild(para);
+        move.textContent = `You chose: ${humanChoice} - Computer chose: ${computerChoice}`;
     }
     else if (
         (computerChoice === 'rock' && humanChoice === 'scissors') ||
@@ -30,19 +26,25 @@ function playRound(humanChoice) {
         (computerChoice === 'paper' && humanChoice === 'rock')
     ) {
         computerScore++;
-        para.textContent = `Computer wins! ${computerChoice} beats ${humanChoice}`;
-        resultDiv.appendChild(para);
+        move.textContent = `You chose: ${humanChoice} -  Computer chose: ${computerChoice}`
     }
     else {
         humanScore++;
-        para.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
-        resultDiv.appendChild(para);
+        move.textContent = `You chose: ${humanChoice} -  Computer chose: ${computerChoice}`
     }
 
-    rounds.textContent = "Round: " + round;
-    resultDiv.appendChild(rounds);
+    roundP.textContent = "Round: " + round;
     score.textContent = `Score - Player: ${humanScore}, Computer: ${computerScore}`;
-    resultDiv.appendChild(score);
+
+    if (humanScore == 5 || computerScore == 5) {
+        if (humanScore == 5) {
+            gameResult.textContent = 'You win, you beat the computer!!!'
+        }
+        else {
+            gameResult.textContent = 'You lose, the computer beat you!!!'
+        }
+    }
+    
 }
 
 let rock = document.querySelector("#rock");
@@ -52,6 +54,8 @@ let scissors = document.querySelector("#scissors");
 rock.addEventListener("click", () => playRound('rock'));
 paper.addEventListener("click", () => playRound('paper'));
 scissors.addEventListener("click", () => playRound('scissors'))
+
+function disableButton
 
 
 
