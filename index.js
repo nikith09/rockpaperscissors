@@ -2,26 +2,27 @@ let moves = ['rock', 'paper', 'scissors'];
 
 let humanScore = 0;
 let computerScore = 0;
+let round = 0;
 
 let getComputerChoice = () => {
-    let choice = moves[Math.floor(Math.random() * moves.length)];
-    return choice;
+    return moves[Math.floor(Math.random() * moves.length)];
 }
 
-let getHumanChoice = () => {
-    let choice = prompt("What's your choice? Enter rock, paper, or scissors:").toLowerCase();
-    return choice;
-} 
+let resultDiv = document.querySelector(".result");
+let para = document.createElement("p");
+let score = document.createElement("span");
+let rounds = document.createElement("p");
 
-function playRound(getComputerChoiceFn, getHumanChoiceFn) {
-    let computerChoice = getComputerChoiceFn();
-    let humanChoice = getHumanChoiceFn();
+function playRound(humanChoice) {
+    let computerChoice = getComputerChoice();
+    round++;
 
     console.log(`Computer chose: ${computerChoice}`);
     console.log(`You chose: ${humanChoice}`);
 
     if (computerChoice === humanChoice) {
-        console.log("It's a draw!");
+        para.textContent = "Its a draw!";
+        resultDiv.appendChild(para);
     }
     else if (
         (computerChoice === 'rock' && humanChoice === 'scissors') ||
@@ -29,34 +30,29 @@ function playRound(getComputerChoiceFn, getHumanChoiceFn) {
         (computerChoice === 'paper' && humanChoice === 'rock')
     ) {
         computerScore++;
-        console.log(`Computer wins! ${computerChoice} beats ${humanChoice}`);
+        para.textContent = `Computer wins! ${computerChoice} beats ${humanChoice}`;
+        resultDiv.appendChild(para);
     }
     else {
         humanScore++;
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        para.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
+        resultDiv.appendChild(para);
     }
 
-    console.log(`Score - Player: ${humanScore}, Computer: ${computerScore}`);
-    console.log("-------------------------------------------------------------------------------------------")
-    console.log("-------------------------------------------------------------------------------------------")
+    rounds.textContent = "Round: " + round;
+    resultDiv.appendChild(rounds);
+    score.textContent = `Score - Player: ${humanScore}, Computer: ${computerScore}`;
+    resultDiv.appendChild(score);
 }
 
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", () => playRound('rock'));
+paper.addEventListener("click", () => playRound('paper'));
+scissors.addEventListener("click", () => playRound('scissors'))
 
 
-function playGame(times) {
-    for (i = 0; i < times; i++) {
-        playRound(getComputerChoice, getHumanChoice);
-    }
-    if (humanScore > computerScore) {
-        console.log("HUMAN IS THE WINNER")
-    }
-    else if (humanScore < computerScore) {
-        console.log("COMPUTER IS THE WINNER")
-    }
-    else {
-        console.log("DRAWWWWW!!!")
-    }
-}
 
-let times = prompt("how many rounds do you want to play?");
-playGame(times);
+
